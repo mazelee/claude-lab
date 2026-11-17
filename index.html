@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Maze｜自我介紹</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&family=Noto+Serif+TC:wght@700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --navy-900: #0c2752;
+      --navy-800: #143a72;
+      --navy-700: #1f5096;
+      --ink: #1a2338;
+      --muted: #5a6478;
+      --paper: #f5f3ee;
+      --card: #ffffff;
+      --line: #e2ded4;
+      --gold: #c9a24b;
+      --gold-light: #e6c987;
+      --gold-dark: #8c6a1f;
+      --red: #b83227;
+      --red-light: #e2574a;
+      --shadow: 0 1px 2px rgba(10, 23, 48, 0.06), 0 8px 24px rgba(10, 23, 48, 0.08);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: "Noto Sans TC", -apple-system, BlinkMacSystemFont, "PingFang TC", "Microsoft JhengHei", sans-serif;
+      color: var(--ink);
+      line-height: 1.7;
+      min-height: 100vh;
+      background: var(--paper);
+      padding: 48px 16px 64px;
+    }
+
+    .container {
+      max-width: 880px;
+      margin: 0 auto;
+    }
+
+    /* Hero */
+    .hero {
+      position: relative;
+      overflow: hidden;
+      text-align: center;
+      color: #fff;
+      background:
+        radial-gradient(circle at 85% 0%, rgba(201, 162, 75, 0.18), transparent 45%),
+        linear-gradient(160deg, var(--navy-700) 0%, var(--navy-800) 45%, var(--navy-900) 100%);
+      border-radius: 18px;
+      padding: 56px 28px 48px;
+      box-shadow: 0 18px 40px rgba(10, 23, 48, 0.22);
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0 0 auto 0;
+      height: 4px;
+      background: linear-gradient(90deg, transparent, var(--gold) 30%, var(--red) 50%, var(--gold) 70%, transparent);
+    }
+
+    .avatar {
+      width: 108px;
+      height: 108px;
+      margin: 0 auto 22px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      font-family: "Noto Serif TC", Georgia, serif;
+      font-size: 46px;
+      font-weight: 700;
+      color: var(--gold-light);
+      background: var(--navy-900);
+      border: 2px solid var(--gold);
+      box-shadow: 0 0 0 6px rgba(201, 162, 75, 0.15), 0 10px 24px rgba(0, 0, 0, 0.3);
+    }
+
+    .avatar { position: relative; }
+
+    .avatar::after {
+      content: "";
+      position: absolute;
+      right: 6px;
+      bottom: 8px;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: var(--red-light);
+      border: 3px solid var(--navy-900);
+    }
+
+    h1 {
+      font-family: "Noto Serif TC", Georgia, serif;
+      font-size: clamp(2.1rem, 6vw, 2.8rem);
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      color: #fff;
+    }
+
+    h1::after {
+      content: "";
+      display: block;
+      width: 72px;
+      height: 3px;
+      margin: 16px auto 0;
+      background: linear-gradient(90deg, var(--gold) 0 38%, var(--red-light) 38% 62%, var(--gold) 62%);
+    }
+
+    .role {
+      margin-top: 14px;
+      font-size: clamp(1rem, 2.6vw, 1.1rem);
+      color: #c5cee0;
+      font-weight: 500;
+      letter-spacing: 0.03em;
+    }
+
+    .quote {
+      margin: 30px auto 0;
+      max-width: 520px;
+      padding: 16px 24px;
+      border-radius: 6px;
+      border: 1px solid rgba(201, 162, 75, 0.45);
+      border-left: 4px solid var(--red-light);
+      background: rgba(255, 255, 255, 0.06);
+      font-family: "Noto Serif TC", Georgia, serif;
+      font-size: clamp(1.05rem, 2.8vw, 1.22rem);
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      color: var(--gold-light);
+    }
+
+    /* Sections */
+    section { margin-top: 48px; }
+
+    h2 {
+      font-size: 1.3rem;
+      font-weight: 700;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: var(--navy-800);
+      letter-spacing: 0.03em;
+    }
+
+    h2::after {
+      content: "";
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(90deg, var(--red) 0 28px, var(--gold) 28px, var(--line) 35%, transparent);
+    }
+
+    .skills {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 16px;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-top: 3px solid var(--navy-800);
+      border-radius: 10px;
+      padding: 22px 20px;
+      box-shadow: var(--shadow);
+      transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-3px);
+      border-top-color: var(--gold);
+      box-shadow: 0 2px 4px rgba(10, 23, 48, 0.06), 0 16px 32px rgba(10, 23, 48, 0.12);
+    }
+
+    .card .icon {
+      font-size: 1.6rem;
+      width: 50px;
+      height: 50px;
+      display: grid;
+      place-items: center;
+      border-radius: 10px;
+      background: #f4eedf;
+      border: 1px solid #e8dcbc;
+      margin-bottom: 14px;
+    }
+
+    .card p {
+      font-weight: 500;
+      font-size: 1.02rem;
+      color: var(--ink);
+    }
+
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .tag {
+      padding: 7px 16px;
+      border-radius: 999px;
+      background: var(--paper);
+      border: 1px solid var(--line);
+      color: var(--navy-800);
+      font-weight: 500;
+      font-size: 0.96rem;
+      transition: border-color 0.2s ease, background 0.2s ease;
+    }
+
+    .tag:hover {
+      border-color: var(--gold);
+      background: #faf6ea;
+    }
+
+    .card h3 {
+      font-size: 1.08rem;
+      margin-bottom: 16px;
+      padding-bottom: 10px;
+      color: var(--navy-800);
+      border-bottom: 1px solid var(--line);
+      letter-spacing: 0.03em;
+    }
+
+    footer {
+      margin-top: 56px;
+      padding-top: 24px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.88rem;
+      letter-spacing: 0.04em;
+      border-top: 1px solid var(--line);
+      position: relative;
+    }
+
+    footer::before {
+      content: "";
+      position: absolute;
+      top: -1px;
+      left: 50%;
+      width: 48px;
+      height: 2px;
+      transform: translateX(-50%);
+      background: var(--red);
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 24px 16px 48px; }
+      .hero { padding: 40px 20px 34px; border-radius: 14px; }
+      .avatar { width: 88px; height: 88px; font-size: 38px; }
+      .two-col { grid-template-columns: 1fr; }
+      .skills { grid-template-columns: 1fr; }
+      .card { display: flex; align-items: center; gap: 14px; padding: 16px; }
+      .card .icon { margin-bottom: 0; flex-shrink: 0; width: 44px; height: 44px; font-size: 1.4rem; }
+      .two-col .card { display: block; }
+    }
+  </style>
+</head>
+<body>
+  <main class="container">
+    <header class="hero">
+      <div class="avatar">M</div>
+      <h1>嗨，我是 Maze</h1>
+      <p class="role">在台灣製造業做業務與行銷的斜槓工作者</p>
+      <p class="quote">「把複雜的專業，變成好懂的內容。」</p>
+    </header>
+
+    <section>
+      <h2>🛠️ 我會的事</h2>
+      <div class="skills">
+        <div class="card"><div class="icon">🤝</div><p>B2B 業務開發與海外客戶溝通</p></div>
+        <div class="card"><div class="icon">✍️</div><p>中英雙語文案、官網與產品型錄內容</p></div>
+        <div class="card"><div class="icon">📊</div><p>數據分析與機器學習應用</p></div>
+        <div class="card"><div class="icon">🐍</div><p>用 Python 做報表與數據儀表板</p></div>
+        <div class="card"><div class="icon">⚙️</div><p>工業設備與自動化相關知識</p></div>
+        <div class="card"><div class="icon">🤖</div><p>用 AI 工具提升工作效率</p></div>
+      </div>
+    </section>
+
+    <section class="two-col">
+      <div class="card">
+        <h3>❤️ 興趣</h3>
+        <div class="tags">
+          <span class="tag">✈️ 旅行</span>
+          <span class="tag">☕ 咖啡拿鐵</span>
+          <span class="tag">📷 攝影</span>
+        </div>
+      </div>
+      <div class="card">
+        <h3>📚 正在學</h3>
+        <div class="tags">
+          <span class="tag">💻 Claude Code</span>
+          <span class="tag">🌏 遠距自由接案</span>
+        </div>
+      </div>
+    </section>
+
+    <footer>© 2026 Maze · 把複雜的專業，變成好懂的內容</footer>
+  </main>
+</body>
+</html>
