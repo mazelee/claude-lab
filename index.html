@@ -3,308 +3,692 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Maze｜自我介紹</title>
+  <title>Maze Studio｜平面設計接案作品集</title>
+  <meta name="description" content="Maze Studio — 品牌識別、型錄與包裝設計。把複雜的專業，變成好懂的視覺。" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&family=Noto+Serif+TC:wght@700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@700&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --navy-900: #0c2752;
-      --navy-800: #143a72;
-      --navy-700: #1f5096;
-      --ink: #1a2338;
-      --muted: #5a6478;
-      --paper: #f5f3ee;
-      --card: #ffffff;
-      --line: #e2ded4;
+      --navy-950: #060f22;
+      --navy-900: #0a1a38;
+      --navy-800: #11284f;
+      --navy-700: #1b3c72;
       --gold: #c9a24b;
       --gold-light: #e6c987;
-      --gold-dark: #8c6a1f;
-      --red: #b83227;
-      --red-light: #e2574a;
-      --shadow: 0 1px 2px rgba(10, 23, 48, 0.06), 0 8px 24px rgba(10, 23, 48, 0.08);
+      --red: #e2574a;
+      --text: #eef1f7;
+      --text-dim: #a7b1c6;
+      --text-faint: #6f7b93;
+      --line: rgba(255, 255, 255, 0.09);
+      --glass: rgba(255, 255, 255, 0.04);
+      --radius: 18px;
+      --ease: cubic-bezier(0.22, 1, 0.36, 1);
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
+    html {
+      scroll-behavior: smooth;
+      overflow-x: hidden; /* 放在 html 而非 body：避免 body 變成捲動容器而讓 sticky 導覽列失效 */
+      -webkit-text-size-adjust: 100%;
+    }
+
+    img, svg, video { max-width: 100%; }
 
     body {
-      font-family: "Noto Sans TC", -apple-system, BlinkMacSystemFont, "PingFang TC", "Microsoft JhengHei", sans-serif;
-      color: var(--ink);
+      font-family: "Inter", "Noto Sans TC", -apple-system, BlinkMacSystemFont, "PingFang TC", "Microsoft JhengHei", sans-serif;
+      color: var(--text);
       line-height: 1.7;
       min-height: 100vh;
-      background: var(--paper);
-      padding: 48px 16px 64px;
+      background-color: var(--navy-950);
+      background-image:
+        radial-gradient(1100px 600px at 85% -10%, rgba(201, 162, 75, 0.16), transparent 60%),
+        radial-gradient(900px 600px at -10% 30%, rgba(27, 60, 114, 0.55), transparent 65%),
+        linear-gradient(180deg, var(--navy-900) 0%, var(--navy-950) 70%);
+      background-attachment: fixed;
+      -webkit-font-smoothing: antialiased;
+      overflow-wrap: break-word;
     }
 
-    .container {
-      max-width: 880px;
+    a { color: inherit; text-decoration: none; }
+
+    .wrap {
+      max-width: 1120px;
       margin: 0 auto;
+      padding: 0 24px;
     }
 
-    /* Hero */
-    .hero {
-      position: relative;
-      overflow: hidden;
-      text-align: center;
-      color: #fff;
-      background:
-        radial-gradient(circle at 85% 0%, rgba(201, 162, 75, 0.18), transparent 45%),
-        linear-gradient(160deg, var(--navy-700) 0%, var(--navy-800) 45%, var(--navy-900) 100%);
-      border-radius: 18px;
-      padding: 56px 28px 48px;
-      box-shadow: 0 18px 40px rgba(10, 23, 48, 0.22);
+    /* ---------- Nav ---------- */
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      background: rgba(6, 15, 34, 0.6);
+      border-bottom: 1px solid var(--line);
     }
 
-    .hero::before {
-      content: "";
-      position: absolute;
-      inset: 0 0 auto 0;
-      height: 4px;
-      background: linear-gradient(90deg, transparent, var(--gold) 30%, var(--red) 50%, var(--gold) 70%, transparent);
+    .nav .wrap {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 68px;
     }
 
-    .avatar {
-      width: 108px;
-      height: 108px;
-      margin: 0 auto 22px;
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+    }
+
+    .logo-mark {
+      width: 34px;
+      height: 34px;
       border-radius: 50%;
       display: grid;
       place-items: center;
       font-family: "Noto Serif TC", Georgia, serif;
-      font-size: 46px;
-      font-weight: 700;
+      font-size: 17px;
       color: var(--gold-light);
-      background: var(--navy-900);
-      border: 2px solid var(--gold);
-      box-shadow: 0 0 0 6px rgba(201, 162, 75, 0.15), 0 10px 24px rgba(0, 0, 0, 0.3);
+      border: 1.5px solid var(--gold);
+      position: relative;
     }
 
-    .avatar { position: relative; }
-
-    .avatar::after {
+    .logo-mark::after {
       content: "";
       position: absolute;
-      right: 6px;
-      bottom: 8px;
-      width: 16px;
-      height: 16px;
+      right: -1px;
+      bottom: 1px;
+      width: 8px;
+      height: 8px;
       border-radius: 50%;
-      background: var(--red-light);
-      border: 3px solid var(--navy-900);
+      background: var(--red);
+      border: 2px solid var(--navy-950);
     }
 
-    h1 {
-      font-family: "Noto Serif TC", Georgia, serif;
-      font-size: clamp(2.1rem, 6vw, 2.8rem);
-      font-weight: 700;
-      letter-spacing: 0.04em;
-      color: #fff;
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      font-size: 0.92rem;
+      color: var(--text-dim);
     }
 
-    h1::after {
-      content: "";
-      display: block;
-      width: 72px;
-      height: 3px;
-      margin: 16px auto 0;
-      background: linear-gradient(90deg, var(--gold) 0 38%, var(--red-light) 38% 62%, var(--gold) 62%);
+    .nav-links a {
+      display: inline-flex;
+      align-items: center;
+      min-height: 44px;
+      padding: 0 4px;
+      transition: color 0.2s ease;
     }
 
-    .role {
-      margin-top: 14px;
-      font-size: clamp(1rem, 2.6vw, 1.1rem);
-      color: #c5cee0;
-      font-weight: 500;
-      letter-spacing: 0.03em;
+    .logo { min-height: 44px; }
+    .nav-links a:hover { color: var(--text); }
+
+    /* ---------- Hero ---------- */
+    .hero {
+      position: relative;
+      padding: 120px 0 112px;
     }
 
-    .quote {
-      margin: 30px auto 0;
-      max-width: 520px;
-      padding: 16px 24px;
-      border-radius: 6px;
-      border: 1px solid rgba(201, 162, 75, 0.45);
-      border-left: 4px solid var(--red-light);
-      background: rgba(255, 255, 255, 0.06);
-      font-family: "Noto Serif TC", Georgia, serif;
-      font-size: clamp(1.05rem, 2.8vw, 1.22rem);
-      font-weight: 700;
-      letter-spacing: 0.04em;
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 7px 16px 7px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(201, 162, 75, 0.35);
+      background: rgba(201, 162, 75, 0.08);
       color: var(--gold-light);
+      font-size: 0.85rem;
+      font-weight: 500;
+      letter-spacing: 0.04em;
     }
 
-    /* Sections */
-    section { margin-top: 48px; }
+    .eyebrow .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #4ade80;
+      box-shadow: 0 0 0 4px rgba(74, 222, 128, 0.18);
+    }
 
-    h2 {
-      font-size: 1.3rem;
+    .hero h1 {
+      margin-top: 28px;
+      max-width: 15ch;
+      font-size: clamp(2.6rem, 7vw, 5rem);
+      font-weight: 800;
+      line-height: 1.12;
+      letter-spacing: -0.02em;
+    }
+
+    .hero h1 .accent {
+      font-family: "Noto Serif TC", Georgia, serif;
       font-weight: 700;
-      margin-bottom: 20px;
+      background: linear-gradient(100deg, var(--gold-light) 10%, var(--gold) 60%, #f0a38f 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .hero .sub {
+      margin-top: 28px;
+      max-width: 560px;
+      font-size: clamp(1.02rem, 2.2vw, 1.18rem);
+      color: var(--text-dim);
+    }
+
+    .cta-row {
+      margin-top: 44px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      min-height: 44px;
+      padding: 15px 28px;
+      border-radius: 999px;
+      font-weight: 600;
+      font-size: 0.98rem;
+      letter-spacing: 0.01em;
+      transition: transform 0.3s var(--ease), box-shadow 0.3s var(--ease), background 0.3s ease, border-color 0.3s ease;
+    }
+
+    .btn svg { width: 18px; height: 18px; transition: transform 0.3s var(--ease); }
+
+    .btn-primary {
+      color: var(--navy-950);
+      background: linear-gradient(135deg, var(--gold-light), var(--gold));
+      box-shadow: 0 10px 30px -8px rgba(201, 162, 75, 0.55);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 16px 40px -8px rgba(201, 162, 75, 0.7);
+    }
+
+    .btn-primary:hover svg { transform: translateX(3px); }
+
+    .btn-ghost {
+      color: var(--text);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      background: var(--glass);
+    }
+
+    .btn-ghost:hover {
+      transform: translateY(-2px);
+      border-color: rgba(255, 255, 255, 0.45);
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    .btn-ghost:hover svg { transform: translateY(3px); }
+
+    .btn:focus-visible,
+    .nav-links a:focus-visible,
+    .card:focus-visible {
+      outline: 2px solid var(--gold-light);
+      outline-offset: 3px;
+    }
+
+    .stats {
+      margin-top: 80px;
+      padding-top: 36px;
+      border-top: 1px solid var(--line);
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 24px;
+      max-width: 640px;
+    }
+
+    .stat strong {
+      display: block;
+      font-size: clamp(1.7rem, 4vw, 2.2rem);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .stat span {
+      font-size: 0.88rem;
+      color: var(--text-faint);
+    }
+
+    /* ---------- Works ---------- */
+    .works { padding: 40px 0 120px; }
+
+    .section-head {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 24px;
+      flex-wrap: wrap;
+      margin-bottom: 48px;
+    }
+
+    .section-label {
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
       display: flex;
       align-items: center;
       gap: 12px;
-      color: var(--navy-800);
-      letter-spacing: 0.03em;
     }
 
-    h2::after {
+    .section-label::before {
       content: "";
-      flex: 1;
-      height: 1px;
-      background: linear-gradient(90deg, var(--red) 0 28px, var(--gold) 28px, var(--line) 35%, transparent);
+      width: 28px;
+      height: 2px;
+      background: linear-gradient(90deg, var(--red) 0 40%, var(--gold) 40%);
     }
 
-    .skills {
+    .section-head h2 {
+      margin-top: 14px;
+      font-size: clamp(1.9rem, 4.4vw, 2.8rem);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+    }
+
+    .section-head p {
+      max-width: 360px;
+      color: var(--text-dim);
+      font-size: 0.98rem;
+    }
+
+    .grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-      gap: 16px;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 24px;
     }
 
     .card {
-      background: var(--card);
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      border-radius: var(--radius);
       border: 1px solid var(--line);
-      border-top: 3px solid var(--navy-800);
-      border-radius: 10px;
-      padding: 22px 20px;
-      box-shadow: var(--shadow);
-      transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.015));
+      overflow: hidden;
+      transition: transform 0.45s var(--ease), border-color 0.45s ease, box-shadow 0.45s var(--ease);
     }
 
     .card:hover {
-      transform: translateY(-3px);
-      border-top-color: var(--gold);
-      box-shadow: 0 2px 4px rgba(10, 23, 48, 0.06), 0 16px 32px rgba(10, 23, 48, 0.12);
+      transform: translateY(-6px);
+      border-color: rgba(201, 162, 75, 0.4);
+      box-shadow: 0 30px 60px -24px rgba(0, 0, 0, 0.7);
     }
 
-    .card .icon {
-      font-size: 1.6rem;
-      width: 50px;
-      height: 50px;
+    .cover {
+      position: relative;
+      aspect-ratio: 4 / 3;
       display: grid;
       place-items: center;
-      border-radius: 10px;
-      background: #f4eedf;
-      border: 1px solid #e8dcbc;
-      margin-bottom: 14px;
+      overflow: hidden;
     }
 
-    .card p {
-      font-weight: 500;
-      font-size: 1.02rem;
-      color: var(--ink);
+    .cover::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 30% 20%, rgba(255, 255, 255, 0.18), transparent 55%);
+      pointer-events: none;
     }
 
-    .two-col {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 16px;
+    .cover-1 { background: linear-gradient(145deg, #1f4b8f, #0f2550); }
+    .cover-2 { background: linear-gradient(145deg, #c9a24b, #7b5a1c); }
+    .cover-3 { background: linear-gradient(145deg, #c8483d, #5e1c17); }
+
+    .cover svg {
+      width: 44%;
+      height: auto;
+      transition: transform 0.6s var(--ease);
+      filter: drop-shadow(0 14px 24px rgba(0, 0, 0, 0.3));
     }
 
-    .tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-    }
+    .card:hover .cover svg { transform: scale(1.08) rotate(-3deg); }
 
-    .tag {
-      padding: 7px 16px;
+    .cover .tag {
+      position: absolute;
+      top: 16px;
+      left: 16px;
+      z-index: 1;
+      padding: 5px 12px;
       border-radius: 999px;
-      background: var(--paper);
-      border: 1px solid var(--line);
-      color: var(--navy-800);
-      font-weight: 500;
-      font-size: 0.96rem;
-      transition: border-color 0.2s ease, background 0.2s ease;
+      background: rgba(6, 15, 34, 0.45);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      color: #fff;
     }
 
-    .tag:hover {
-      border-color: var(--gold);
-      background: #faf6ea;
+    .card-body {
+      padding: 26px 26px 28px;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+
+    .card-meta {
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-faint);
     }
 
     .card h3 {
-      font-size: 1.08rem;
-      margin-bottom: 16px;
-      padding-bottom: 10px;
-      color: var(--navy-800);
-      border-bottom: 1px solid var(--line);
-      letter-spacing: 0.03em;
+      margin-top: 8px;
+      font-size: 1.28rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
     }
+
+    .card p {
+      margin-top: 12px;
+      color: var(--text-dim);
+      font-size: 0.95rem;
+      flex: 1;
+    }
+
+    .card .more {
+      margin-top: 22px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--gold-light);
+    }
+
+    .card .more svg { width: 16px; height: 16px; transition: transform 0.3s var(--ease); }
+    .card:hover .more svg { transform: translateX(4px); }
+
+    /* ---------- Contact / Footer ---------- */
+    .contact {
+      padding: 0 0 96px;
+    }
+
+    .contact-box {
+      position: relative;
+      border-radius: 24px;
+      padding: clamp(40px, 6vw, 72px);
+      text-align: center;
+      overflow: hidden;
+      border: 1px solid rgba(201, 162, 75, 0.25);
+      background:
+        radial-gradient(600px 300px at 50% 0%, rgba(201, 162, 75, 0.18), transparent 70%),
+        linear-gradient(160deg, var(--navy-700), var(--navy-900));
+    }
+
+    .contact-box h2 {
+      font-size: clamp(1.8rem, 4.4vw, 2.6rem);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1.25;
+    }
+
+    .contact-box p {
+      margin: 16px auto 0;
+      max-width: 480px;
+      color: var(--text-dim);
+    }
+
+    .contact-box .cta-row { justify-content: center; margin-top: 36px; }
 
     footer {
-      margin-top: 56px;
-      padding-top: 24px;
-      text-align: center;
-      color: var(--muted);
-      font-size: 0.88rem;
-      letter-spacing: 0.04em;
       border-top: 1px solid var(--line);
-      position: relative;
+      padding: 32px 0 40px;
+      color: var(--text-faint);
+      font-size: 0.86rem;
     }
 
-    footer::before {
-      content: "";
-      position: absolute;
-      top: -1px;
-      left: 50%;
-      width: 48px;
-      height: 2px;
-      transform: translateX(-50%);
-      background: var(--red);
+    footer .wrap {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    footer .motto {
+      font-family: "Noto Serif TC", Georgia, serif;
+      color: var(--text-dim);
+      letter-spacing: 0.04em;
+    }
+
+    /* ---------- Fade-in animation ---------- */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .fade {
+      opacity: 0;
+      animation: fadeUp 0.9s var(--ease) forwards;
+    }
+
+    .d1 { animation-delay: 0.05s; }
+    .d2 { animation-delay: 0.18s; }
+    .d3 { animation-delay: 0.32s; }
+    .d4 { animation-delay: 0.46s; }
+    .d5 { animation-delay: 0.6s; }
+
+    /* Scroll-triggered reveal (enhanced by JS; visible by default without it) */
+    .js .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.9s var(--ease), transform 0.9s var(--ease);
+    }
+
+    .js .reveal.in { opacity: 1; transform: none; }
+    .js .grid .reveal:nth-child(2) { transition-delay: 0.12s; }
+    .js .grid .reveal:nth-child(3) { transition-delay: 0.24s; }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .fade { animation: none; opacity: 1; }
+      .js .reveal { opacity: 1; transform: none; transition: none; }
+      .card, .btn, .cover svg { transition: none; }
+    }
+
+    /* ---------- Responsive ---------- */
+    @media (max-width: 920px) {
+      .grid { grid-template-columns: 1fr 1fr; }
+      .grid .card:last-child { grid-column: 1 / -1; }
+      .grid .card:last-child .cover { aspect-ratio: 16 / 7; }
     }
 
     @media (max-width: 640px) {
-      body { padding: 24px 16px 48px; }
-      .hero { padding: 40px 20px 34px; border-radius: 14px; }
-      .avatar { width: 88px; height: 88px; font-size: 38px; }
-      .two-col { grid-template-columns: 1fr; }
-      .skills { grid-template-columns: 1fr; }
-      .card { display: flex; align-items: center; gap: 14px; padding: 16px; }
-      .card .icon { margin-bottom: 0; flex-shrink: 0; width: 44px; height: 44px; font-size: 1.4rem; }
-      .two-col .card { display: block; }
+      .wrap { padding: 0 16px; }
+      .nav-links { gap: 20px; }
+      .nav-links a:not(.keep) { display: none; }
+      .hero { padding: 72px 0 72px; }
+      /* 大標題縮為桌面版的 75% */
+      .hero h1 {
+        font-size: calc(clamp(2.6rem, 7vw, 5rem) * 0.75);
+        max-width: none;
+      }
+      .stats { margin-top: 56px; gap: 12px; }
+      .cta-row .btn { flex: 1 1 auto; justify-content: center; }
+      /* 三張作品卡片改為單欄垂直排列 */
+      .grid { grid-template-columns: minmax(0, 1fr); gap: 20px; }
+      .grid .card:last-child { grid-column: auto; }
+      .grid .card:last-child .cover { aspect-ratio: 4 / 3; }
+      .works { padding: 24px 0 88px; }
+      footer .wrap { flex-direction: column; text-align: center; }
     }
   </style>
 </head>
 <body>
-  <main class="container">
+  <script>document.documentElement.classList.add("js");</script>
+
+  <nav class="nav">
+    <div class="wrap">
+      <a href="#top" class="logo" aria-label="Maze Studio 首頁">
+        <span class="logo-mark">M</span>
+        <span>Maze Studio</span>
+      </a>
+      <div class="nav-links">
+        <a href="#works" class="keep">作品</a>
+        <a href="#contact" class="keep">聯繫</a>
+      </div>
+    </div>
+  </nav>
+
+  <main id="top">
+    <!-- Hero -->
     <header class="hero">
-      <div class="avatar">M</div>
-      <h1>嗨，我是 Maze</h1>
-      <p class="role">在台灣製造業做業務與行銷的斜槓工作者</p>
-      <p class="quote">「把複雜的專業，變成好懂的內容。」</p>
+      <div class="wrap">
+        <span class="eyebrow fade d1"><span class="dot"></span>2027 第一季 開放接案中</span>
+        <h1 class="fade d2">把複雜的專業，<br /><span class="accent">變成好懂的視覺。</span></h1>
+        <p class="sub fade d3">
+          我是 Maze，專注於 B2B 與製造業的平面設計師。從品牌識別、產品型錄到包裝設計，
+          用清晰的資訊層次與精準的視覺語言，讓你的專業一眼就被看懂。
+        </p>
+        <div class="cta-row fade d4">
+          <a href="#contact" class="btn btn-primary">
+            與我聯繫
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+          <a href="#works" class="btn btn-ghost">
+            觀看作品
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M6 13l6 6 6-6"/></svg>
+          </a>
+        </div>
+        <div class="stats fade d5">
+          <div class="stat"><strong>40+</strong><span>完成專案</span></div>
+          <div class="stat"><strong>6 年</strong><span>產業經驗</span></div>
+          <div class="stat"><strong>中 / 英</strong><span>雙語設計</span></div>
+        </div>
+      </div>
     </header>
 
-    <section>
-      <h2>🛠️ 我會的事</h2>
-      <div class="skills">
-        <div class="card"><div class="icon">🤝</div><p>B2B 業務開發與海外客戶溝通</p></div>
-        <div class="card"><div class="icon">✍️</div><p>中英雙語文案、官網與產品型錄內容</p></div>
-        <div class="card"><div class="icon">📊</div><p>數據分析與機器學習應用</p></div>
-        <div class="card"><div class="icon">🐍</div><p>用 Python 做報表與數據儀表板</p></div>
-        <div class="card"><div class="icon">⚙️</div><p>工業設備與自動化相關知識</p></div>
-        <div class="card"><div class="icon">🤖</div><p>用 AI 工具提升工作效率</p></div>
+    <!-- Selected Works -->
+    <section class="works" id="works">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <div>
+            <span class="section-label">Selected Works</span>
+            <h2>精選作品</h2>
+          </div>
+          <p>每個專案都從理解產業開始。以下是近期三個代表性的品牌與出版設計案。</p>
+        </div>
+
+        <div class="grid">
+          <article class="card reveal">
+            <div class="cover cover-1">
+              <span class="tag">品牌識別</span>
+              <svg viewBox="0 0 100 100" fill="none" aria-hidden="true">
+                <circle cx="50" cy="50" r="34" stroke="#fff" stroke-width="5"/>
+                <path d="M30 62 L42 38 L50 54 L58 38 L70 62" stroke="#e6c987" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+                <circle cx="78" cy="22" r="6" fill="#e2574a"/>
+              </svg>
+            </div>
+            <div class="card-body">
+              <span class="card-meta">Brand Identity · 2026</span>
+              <h3>鋼構精工 品牌重塑</h3>
+              <p>為四十年歷史的金屬加工廠重新定義品牌。以幾何線條轉譯「精準」與「穩固」，搭配深藍主色建立信任感，讓傳統製造業在海外展會中脫穎而出。</p>
+              <span class="more">查看案例
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+              </span>
+            </div>
+          </article>
+
+          <article class="card reveal">
+            <div class="cover cover-2">
+              <span class="tag">出版編排</span>
+              <svg viewBox="0 0 100 100" fill="none" aria-hidden="true">
+                <rect x="22" y="18" width="44" height="60" rx="4" stroke="#fff" stroke-width="5"/>
+                <rect x="34" y="26" width="44" height="60" rx="4" fill="#0a1a38" stroke="#fff" stroke-width="5"/>
+                <path d="M44 44h24M44 54h24M44 64h14" stroke="#e6c987" stroke-width="5" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <div class="card-body">
+              <span class="card-meta">Catalog Design · 2026</span>
+              <h3>自動化設備 雙語型錄</h3>
+              <p>將上百項技術規格整理成清楚的資訊架構。以模組化網格與一致的圖示系統，讓採購人員在 30 秒內找到關鍵參數，中英版面同步、閱讀零負擔。</p>
+              <span class="more">查看案例
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+              </span>
+            </div>
+          </article>
+
+          <article class="card reveal">
+            <div class="cover cover-3">
+              <span class="tag">包裝設計</span>
+              <svg viewBox="0 0 100 100" fill="none" aria-hidden="true">
+                <path d="M30 36 h40 l-4 46 a4 4 0 0 1 -4 4 h-24 a4 4 0 0 1 -4 -4 z" stroke="#fff" stroke-width="5" stroke-linejoin="round"/>
+                <path d="M26 36 h48" stroke="#fff" stroke-width="5" stroke-linecap="round"/>
+                <path d="M42 26 c0 -6 6 -6 6 -12 M54 26 c0 -6 6 -6 6 -12" stroke="#e6c987" stroke-width="4" stroke-linecap="round"/>
+                <circle cx="50" cy="60" r="8" fill="#e6c987"/>
+              </svg>
+            </div>
+            <div class="card-body">
+              <span class="card-meta">Packaging · 2025</span>
+              <h3>山嵐咖啡 包裝系列</h3>
+              <p>以台灣山脈的層疊輪廓為靈感，用色塊區分烘焙程度。簡約的排版讓產地故事成為主角，在貨架上同時傳達溫度與質感，上市首月銷量成長 35%。</p>
+              <span class="more">查看案例
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+              </span>
+            </div>
+          </article>
+        </div>
       </div>
     </section>
 
-    <section class="two-col">
-      <div class="card">
-        <h3>❤️ 興趣</h3>
-        <div class="tags">
-          <span class="tag">✈️ 旅行</span>
-          <span class="tag">☕ 咖啡拿鐵</span>
-          <span class="tag">📷 攝影</span>
-        </div>
-      </div>
-      <div class="card">
-        <h3>📚 正在學</h3>
-        <div class="tags">
-          <span class="tag">💻 Claude Code</span>
-          <span class="tag">🌏 遠距自由接案</span>
+    <!-- Contact -->
+    <section class="contact" id="contact">
+      <div class="wrap">
+        <div class="contact-box reveal">
+          <span class="section-label" style="justify-content:center">Let's Work Together</span>
+          <h2 style="margin-top:16px">有專案想法嗎？<br />我們來聊聊。</h2>
+          <p>無論是品牌識別、型錄或包裝設計，歡迎來信簡述需求，我會在 24 小時內回覆。</p>
+          <div class="cta-row">
+            <!-- TODO：把下方 mailto 換成你的接案信箱 -->
+            <a href="mailto:hello@example.com" class="btn btn-primary">
+              寄信給我
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h16v12H4z"/><path d="M4 7l8 6 8-6"/></svg>
+            </a>
+          </div>
         </div>
       </div>
     </section>
-
-    <footer>© 2026 Maze · 把複雜的專業，變成好懂的內容</footer>
   </main>
+
+  <footer>
+    <div class="wrap">
+      <span>© 2026 Maze Studio. All rights reserved.</span>
+      <span class="motto">把複雜的專業，變成好懂的內容</span>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      var items = document.querySelectorAll(".reveal");
+      if (!("IntersectionObserver" in window)) {
+        items.forEach(function (el) { el.classList.add("in"); });
+        return;
+      }
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (e.isIntersecting) {
+            e.target.classList.add("in");
+            io.unobserve(e.target);
+          }
+        });
+      }, { threshold: 0.15 });
+      items.forEach(function (el) { io.observe(el); });
+    })();
+  </script>
 </body>
 </html>
